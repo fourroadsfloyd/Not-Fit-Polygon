@@ -158,28 +158,28 @@ public:
 
 private:
 
-    inline bool vertexDeduplicate(Vert* vert);
+    bool vertexDeduplicate(Vert* vert);
 
-    inline void handleLeftEvent(const Event& e);
+    void handleLeftEvent(const Event& e);
 
-    inline void handleRightEvent(const Event& e);
+    void handleRightEvent(const Event& e);
 
-    inline void checkNeighbours(std::set<Segment*>::iterator it, Segment* seg);
+    void checkNeighbours(std::set<Segment*>::iterator it, Segment* seg);
 
-    inline void checkNeighboursBeforeRemoval(std::set<Segment*>::iterator it);
+    void checkNeighboursBeforeRemoval(std::set<Segment*>::iterator it);
 
     //将线段的端点以事件形式插入优先级队列
-    inline void insertPriorityQueue(Segment* s, bool isleft);
+    void insertPriorityQueue(Segment* s, bool isleft);
 
-    inline Vert *insertVerts(Vert* ip);
+    Vert *insertVerts(Vert* ip);
 
-    inline void modifyVertInSeg(Segment* s, Vert* ip, bool aorb);    //a:true b:false
+    void modifyVertInSeg(Segment* s, Vert* ip, bool aorb);    //a:true b:false
 
-    inline bool processIntersect(Segment *s1, Segment *s2); //插入s2时，处理与其左右邻居是否有交点
+    bool processIntersect(Segment *s1, Segment *s2); //插入s2时，处理与其左右邻居是否有交点
 
-    inline bool processIntersectPrevNext(Segment *s1, Segment *s2); //用于从set中取出右端点事件前，比较右线段所在位置处，邻居是否有交点
+    bool processIntersectPrevNext(Segment *s1, Segment *s2); //用于从set中取出右端点事件前，比较右线段所在位置处，邻居是否有交点
 
-    inline Vert *intersect(Segment& s1, Segment& s2);
+    Vert *intersect(Segment& s1, Segment& s2);
 
     //当前扫描线位置
     int64 currentX = LLONG_MIN;
