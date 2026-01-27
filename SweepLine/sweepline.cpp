@@ -95,7 +95,7 @@ void SweepLine::run(std::vector<Segment *> &input_)
 }
 
 //返回true就需要删除vert
-inline bool SweepLine::vertexDeduplicate(Vert* vert)
+bool SweepLine::vertexDeduplicate(Vert* vert)
 {
     pointKey k = keyOf(vert->pt);
     auto it = vertId.find(k);
@@ -131,7 +131,7 @@ inline bool SweepLine::vertexDeduplicate(Vert* vert)
     return false;
 }
 
-inline void SweepLine::handleLeftEvent(const Event &e)
+void SweepLine::handleLeftEvent(const Event &e)
 {
     // 更新比较器的当前扫描线位置
     currentX = e.v->pt.x;
@@ -180,7 +180,7 @@ inline void SweepLine::handleLeftEvent(const Event &e)
     }
 }
 
-inline void SweepLine::handleRightEvent(const Event &e)
+void SweepLine::handleRightEvent(const Event &e)
 {
     auto it = status.find(e.seg);
 
@@ -224,7 +224,7 @@ inline void SweepLine::handleRightEvent(const Event &e)
     }
 }
 
-inline void SweepLine::checkNeighbours(std::set<Segment*>::iterator it, Segment* seg)
+void SweepLine::checkNeighbours(std::set<Segment*>::iterator it, Segment* seg)
 {
     // 检查上邻居
     if (it != status.begin())
@@ -270,7 +270,7 @@ inline void SweepLine::checkNeighbours(std::set<Segment*>::iterator it, Segment*
     }
 }
 
-inline void SweepLine::checkNeighboursBeforeRemoval(std::set<Segment*>::iterator it)
+void SweepLine::checkNeighboursBeforeRemoval(std::set<Segment*>::iterator it)
 {
     // 检查移除后可能新相邻的线段
     if (it != status.begin())
@@ -297,7 +297,7 @@ inline void SweepLine::checkNeighboursBeforeRemoval(std::set<Segment*>::iterator
     }
 }
 
-inline void SweepLine::insertPriorityQueue(Segment *s,bool isleft)
+void SweepLine::insertPriorityQueue(Segment *s,bool isleft)
 {   
     if(s == nullptr)
     {
@@ -410,7 +410,7 @@ inline void SweepLine::insertPriorityQueue(Segment *s,bool isleft)
     }
 }
 
-inline Vert* SweepLine::insertVerts(Vert *ip)
+Vert* SweepLine::insertVerts(Vert *ip)
 {
     pointKey key = keyOf(ip->pt);
 
@@ -440,7 +440,7 @@ auto removeInOut = [](std::vector<Segment*>& vec, Segment* s) {
     vec.erase(std::remove(vec.begin(), vec.end(), s), vec.end());
 };
 
-inline void SweepLine::modifyVertInSeg(Segment *s, Vert *ip, bool aorb)
+void SweepLine::modifyVertInSeg(Segment *s, Vert *ip, bool aorb)
 {
     if(aorb)
     {
@@ -620,7 +620,7 @@ bool SweepLine::processIntersect(Segment* s1, Segment* s2)
 }
 
 
-inline bool SweepLine::processIntersectPrevNext(Segment* s1, Segment* s2)
+bool SweepLine::processIntersectPrevNext(Segment* s1, Segment* s2)
 {
 
     Vert* ip = intersect(*s1, *s2);
@@ -768,11 +768,11 @@ inline bool SweepLine::processIntersectPrevNext(Segment* s1, Segment* s2)
     return true;
 }
 
-inline auto cross = [](const Point& a,const Point& b) ->int64{
+auto cross = [](const Point& a,const Point& b) ->int64{
     return a.x * b.y - a.y * b.x;
 };
 
-inline auto changeInter_V_S_S = [](Segment& seg1, Segment& seg2, Vert* v) -> Vert*
+auto changeInter_V_S_S = [](Segment& seg1, Segment& seg2, Vert* v) -> Vert*
 {
     if(v == nullptr)
         return v;
@@ -830,7 +830,7 @@ inline auto changeInter_V_S_S = [](Segment& seg1, Segment& seg2, Vert* v) -> Ver
     return v;
 };
 
-inline Vert* SweepLine::intersect(Segment &s1, Segment &s2)
+Vert* SweepLine::intersect(Segment &s1, Segment &s2)
 {
     // 快速排斥实验
     if (std::max(s1.a->pt.x, s1.b->pt.x) < std::min(s2.a->pt.x, s2.b->pt.x) ||
