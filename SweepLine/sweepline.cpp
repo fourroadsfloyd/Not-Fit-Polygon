@@ -768,11 +768,11 @@ bool SweepLine::processIntersectPrevNext(Segment* s1, Segment* s2)
     return true;
 }
 
-auto cross = [](const Point& a,const Point& b) ->int64{
+inline auto cross = [](const Point& a,const Point& b) ->int64{
     return a.x * b.y - a.y * b.x;
 };
 
-auto changeInter_V_S_S = [](Segment& seg1, Segment& seg2, Vert* v) -> Vert*
+inline auto changeInter_V_S_S = [](Segment& seg1, Segment& seg2, Vert* v) -> Vert*
 {
     if(v == nullptr)
         return v;
